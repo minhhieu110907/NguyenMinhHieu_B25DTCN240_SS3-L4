@@ -18,8 +18,7 @@ INSERT INTO ORDERS (CustomerName, OrderDate, TotalAmount, Status) VALUES
 ('Trần Thị B', '2023-05-20', 300000, 'Canceled'),    
 ('Lê Văn C', '2024-01-05', 850000, 'Completed');
 
--- Thay vì DELETE FROM ORDERS WHERE Status = 'Canceled' 
--- Chúng ta chỉ đánh dấu chúng là đã xóa.
+
 UPDATE ORDERS 
 SET IsDeleted = 1 
 WHERE Status = 'Canceled';
