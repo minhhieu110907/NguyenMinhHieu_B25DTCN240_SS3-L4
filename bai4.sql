@@ -8,9 +8,8 @@ CREATE TABLE ORDERS (
     TotalAmount DECIMAL(18, 2),
     Status ENUM('Completed', 'Canceled', 'Pending'),
     IsDeleted TINYINT(1) DEFAULT 0 -- 0: Còn sống, 1: Đã xóa mềm
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
--- Tạo Index trên cột IsDeleted để tăng tốc truy vấn sau này
 CREATE INDEX idx_is_deleted ON ORDERS(IsDeleted);
 
 INSERT INTO ORDERS (CustomerName, OrderDate, TotalAmount, Status) VALUES
@@ -19,8 +18,7 @@ INSERT INTO ORDERS (CustomerName, OrderDate, TotalAmount, Status) VALUES
 ('Trần Thị B', '2023-05-20', 300000, 'Canceled'),    
 ('Lê Văn C', '2024-01-05', 850000, 'Completed');
 
--- 3. THỰC THI GIẢI PHÁP: SOFT DELETE
--- Thay vì DELETE FROM ORDERS WHERE Status = 'Canceled' (làm mất dữ liệu kế toán)
+-- Thay vì DELETE FROM ORDERS WHERE Status = 'Canceled' 
 -- Chúng ta chỉ đánh dấu chúng là đã xóa.
 UPDATE ORDERS 
 SET IsDeleted = 1 
